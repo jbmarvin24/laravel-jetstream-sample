@@ -29,10 +29,20 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->name('dashboard');
 
+// Employees
+
 Route::get('employees', [EmployeeController::class, 'index'])
     ->name('employees')
     ->middleware('auth');
     
 Route::get('employees/create', [EmployeeController::class, 'create'])
     ->name('employees.create')
+    ->middleware('auth');
+
+Route::post('employees', [EmployeeController::class, 'store'])
+    ->name('employees.store')
+    ->middleware('auth');
+
+Route::get('employees/{employee}/edit',[EmployeeController::class, 'edit'])
+    ->name('employees.edit')
     ->middleware('auth');

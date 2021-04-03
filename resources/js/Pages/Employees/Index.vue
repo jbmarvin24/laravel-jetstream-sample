@@ -20,11 +20,31 @@
             <th class="px-6 pt-6 pb-4">Birthday</th>
             <th class="px-6 pt-6 pb-4">Age</th>
           </tr>
-          <tr class="hover:bg-gray-100 focus-within:bg-gray-100">
-            <td class="border-t px-6 py-4">1</td>
-            <td class="border-t px-6 py-4">Marvin</td>
-            <td class="border-t px-6 py-4">6/24/1998</td>
-            <td class="border-t px-6 py-4">22</td>
+          <tr
+            v-for="employee in employees"
+            :key="employee.id"
+            class="hover:bg-gray-100 focus-within:bg-gray-100"
+          >
+            <td class="border-t px-6 py-4">
+              <inertia-link :href="route('employees.edit', employee.id)">
+                {{ employee.id }}
+              </inertia-link>
+            </td>
+            <td class="border-t px-6 py-4">
+              <inertia-link :href="route('employees.edit', employee.id)">
+                {{ employee.name }}
+              </inertia-link>
+            </td>
+            <td class="border-t px-6 py-4">
+              <inertia-link :href="route('employees.edit', employee.id)">
+                {{ employee.birthday }}
+              </inertia-link>
+            </td>
+            <td class="border-t px-6 py-4">
+              <inertia-link :href="route('employees.edit', employee.id)">
+                {{ employee.age }}
+              </inertia-link>
+            </td>
             <td class="border-t px-4 w-6 h-6 text-gray-400">></td>
           </tr>
         </table>
@@ -39,6 +59,9 @@ import AppLayout from "@/Layouts/AppLayout";
 export default {
   components: {
     AppLayout,
+  },
+  props: {
+    employees: Array,
   },
 };
 </script>

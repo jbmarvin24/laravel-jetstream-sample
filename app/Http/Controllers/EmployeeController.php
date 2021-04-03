@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use App\Models\Employee;
 
 class EmployeeController extends Controller
 {
@@ -14,7 +15,10 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Employees/Index');
+        $employees = Employee::all();
+        return Inertia::render('Employees/Index',[
+            'employees' => $employees
+        ]);
     }
 
     /**
@@ -35,7 +39,14 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => ['required','max:100'],
+            'birthday' => ['required','date'],
+            'age' => ['required','numeric']
+        ]);
+        Employee::create($validated);
+
+        return redirect('employees');
     }
 
     /**
@@ -57,7 +68,7 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
-        //
+        return Inertia::render('Employees/Edit');
     }
 
     /**
