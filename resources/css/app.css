@@ -1,0 +1,9 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+
+/* Components */
+@import 'buttons';
+
+
+/* Utilities */
+@import 'tailwindcss/utilities';
