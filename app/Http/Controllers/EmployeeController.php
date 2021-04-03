@@ -66,9 +66,16 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Employee $employee)
     {
-        return Inertia::render('Employees/Edit');
+        return Inertia::render('Employees/Edit',[
+            'employee' => [
+                'id' => $employee->id,
+                'name' =>$employee->name,
+                'birthday' => $employee->birthday,
+                'age' => $employee->age
+            ]
+        ]);
     }
 
     /**
@@ -78,9 +85,17 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Employee $employee)
     {
-        //
+        $validated = Request::validate([
+            'name' => ['required','max:100'],
+            'birthday' => ['required','date'],
+            'age' => ['required','numeric']
+        ]);
+
+        $employee->update($validated);
+
+        return redirect('employees');
     }
 
     /**
@@ -89,8 +104,10 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Employee $employee)
     {
-        //
+        $employee->delete();
+
+        return redirect('employees');
     }
 }

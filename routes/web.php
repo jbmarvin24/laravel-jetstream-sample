@@ -46,3 +46,11 @@ Route::post('employees', [EmployeeController::class, 'store'])
 Route::get('employees/{employee}/edit',[EmployeeController::class, 'edit'])
     ->name('employees.edit')
     ->middleware('auth');
+
+Route::put('employees/{employee}',[EmployeeController::class, 'update'])
+    ->name('employees.update')
+    ->middleware('auth');
+
+Route::delete('employees/{employee}',[EmployeeController::class, 'destroy'])
+    ->name('employees.destroy')
+    ->middleware('auth');

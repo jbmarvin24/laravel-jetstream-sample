@@ -25,27 +25,54 @@
             :key="employee.id"
             class="hover:bg-gray-100 focus-within:bg-gray-100"
           >
-            <td class="border-t px-6 py-4">
-              <inertia-link :href="route('employees.edit', employee.id)">
+            <td class="border-t">
+              <inertia-link
+                :href="route('employees.edit', employee.id)"
+                class="px-6 py-4 flex items-center"
+              >
                 {{ employee.id }}
               </inertia-link>
             </td>
-            <td class="border-t px-6 py-4">
-              <inertia-link :href="route('employees.edit', employee.id)">
+            <td class="border-t">
+              <inertia-link
+                :href="route('employees.edit', employee.id)"
+                class="px-6 py-4 flex items-center focus:text-indigo-600"
+              >
                 {{ employee.name }}
               </inertia-link>
             </td>
-            <td class="border-t px-6 py-4">
-              <inertia-link :href="route('employees.edit', employee.id)">
+            <td class="border-t">
+              <inertia-link
+                :href="route('employees.edit', employee.id)"
+                class="px-6 py-4 flex items-center"
+              >
                 {{ employee.birthday }}
               </inertia-link>
             </td>
-            <td class="border-t px-6 py-4">
-              <inertia-link :href="route('employees.edit', employee.id)">
+            <td class="border-t">
+              <inertia-link
+                :href="route('employees.edit', employee.id)"
+                class="px-6 py-4 flex items-center"
+              >
                 {{ employee.age }}
               </inertia-link>
             </td>
-            <td class="border-t px-4 w-6 h-6 text-gray-400">></td>
+            <td class="border-t w-px">
+              <inertia-link
+                :href="route('employees.edit', employee.id)"
+                class="px-4 flex items-center"
+              >
+                <svg
+                  class="block w-6 h-6 fill-current text-gray-400"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                >
+                  <polygon
+                    points="12.95 10.707 13.657 10 8 4.343 6.586 5.757 10.828 10 6.586 14.243 8 15.657 12.95 10.707"
+                  />
+                </svg>
+              </inertia-link>
+            </td>
           </tr>
         </table>
       </div>
