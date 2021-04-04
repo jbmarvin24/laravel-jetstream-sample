@@ -47,7 +47,7 @@
                       v-model="form.birthday"
                     />
                   </div>
-                  <div>{{ form.errors.name }}</div>
+                  <div>{{ form.errors.birthday }}</div>
                 </div>
 
                 <div class="col-span-6 sm:col-span-3">
@@ -66,7 +66,7 @@
                       v-model="form.age"
                     />
                   </div>
-                  <div>{{ form.errors.name }}</div>
+                  <div>{{ form.errors.age }}</div>
                 </div>
               </div>
             </div>

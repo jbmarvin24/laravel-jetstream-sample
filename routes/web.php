@@ -4,6 +4,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\EmploymentStatusController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +35,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::get('employees', [EmployeeController::class, 'index'])
     ->name('employees')
     ->middleware('auth');
-    
+
 Route::get('employees/create', [EmployeeController::class, 'create'])
     ->name('employees.create')
     ->middleware('auth');
@@ -43,14 +44,39 @@ Route::post('employees', [EmployeeController::class, 'store'])
     ->name('employees.store')
     ->middleware('auth');
 
-Route::get('employees/{employee}/edit',[EmployeeController::class, 'edit'])
+Route::get('employees/{employee}/edit', [EmployeeController::class, 'edit'])
     ->name('employees.edit')
     ->middleware('auth');
 
-Route::put('employees/{employee}',[EmployeeController::class, 'update'])
+Route::put('employees/{employee}', [EmployeeController::class, 'update'])
     ->name('employees.update')
     ->middleware('auth');
 
-Route::delete('employees/{employee}',[EmployeeController::class, 'destroy'])
+Route::delete('employees/{employee}', [EmployeeController::class, 'destroy'])
     ->name('employees.destroy')
+    ->middleware('auth');
+
+// Employment Statuses
+Route::get('employment-statuses', [EmploymentStatusController::class, 'index'])
+    ->name('employment-statuses')
+    ->middleware('auth');
+
+Route::get('employment-statuses/create', [EmploymentStatusController::class, 'create'])
+    ->name('employment-statuses.create')
+    ->middleware('auth');
+
+Route::post('employment-statuses', [EmploymentStatusController::class, 'store'])
+    ->name('employment-statuses.store')
+    ->middleware('auth');
+
+Route::get('employment-statuses/{employmentStatus}/edit', [EmploymentStatusController::class, 'edit'])
+    ->name('employment-statuses.edit')
+    ->middleware('auth');
+
+Route::put('employment-statuses/{employmentStatus}', [EmploymentStatusController::class, 'update'])
+    ->name('employment-statuses.update')
+    ->middleware('auth');
+
+Route::delete('employment-statuses/{employmentStatus}', [EmploymentStatusController::class, 'destroy'])
+    ->name('employment-statuses.destroy')
     ->middleware('auth');

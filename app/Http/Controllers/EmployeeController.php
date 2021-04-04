@@ -87,7 +87,7 @@ class EmployeeController extends Controller
      */
     public function update(Employee $employee)
     {
-        $validated = Request::validate([
+        $validated = request()->validate([
             'name' => ['required','max:100'],
             'birthday' => ['required','date'],
             'age' => ['required','numeric']

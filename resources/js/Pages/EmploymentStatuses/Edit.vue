@@ -2,7 +2,7 @@
   <app-layout>
     <template #header>
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        Employees
+        Employment Statuses
       </h2>
     </template>
     <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
@@ -36,37 +36,18 @@
                     for="birthday"
                     class="block text-sm font-medium text-gray-700"
                   >
-                    Birthday
+                    Description
                   </label>
                   <div class="mt-1 flex rounded-md shadow-sm">
                     <input
-                      type="date"
-                      name="birthday"
-                      id="birthday"
+                      type="text"
+                      name="description"
+                      id="description"
                       class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 flex-1 block w-full rounded-md shadow-sm"
-                      v-model="form.birthday"
+                      v-model="form.description"
                     />
                   </div>
-                  <div>{{ form.errors.birthday }}</div>
-                </div>
-
-                <div class="col-span-6 sm:col-span-3">
-                  <label
-                    for="age"
-                    class="block text-sm font-medium text-gray-700"
-                  >
-                    Age
-                  </label>
-                  <div class="mt-1 flex rounded-md shadow-sm">
-                    <input
-                      type="number"
-                      name="age"
-                      id="age"
-                      class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 flex-1 block w-full rounded-md shadow-sm"
-                      v-model="form.age"
-                    />
-                  </div>
-                  <div>{{ form.errors.age }}</div>
+                  <div>{{ form.errors.description }}</div>
                 </div>
               </div>
             </div>
@@ -78,13 +59,13 @@
                 type="button"
                 @click="destroy"
               >
-                Delete Employee
+                Delete Employment Status
               </button>
               <button
                 type="submit"
                 class="py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
-                Update Employee
+                Update Employment Status
               </button>
             </div>
           </div>
@@ -108,25 +89,27 @@ export default {
     JetInputError,
   },
   props: {
-    employee: Object,
+    employmentStatus: Object,
   },
   data() {
     return {
       form: this.$inertia.form({
-        name: this.employee.name,
-        birthday: this.employee.birthday,
-        age: this.employee.age,
+        name: this.employmentStatus.name,
+        description: this.employmentStatus.description,
       }),
     };
   },
   methods: {
     update() {
-      this.form.put(this.route("employees.update", this.employee.id));
-      // Inertia.put(this.route("employees.update", this.employee.id), this.form);
+      this.form.put(
+        this.route("employment-statuses.update", this.employmentStatus.id)
+      );
     },
     destroy() {
-      if (confirm("Are you sure you want to delete this employee?")) {
-        this.$inertia.delete(this.route("employees.destroy", this.employee.id));
+      if (confirm("Are you sure you want to delete this employment status?")) {
+        this.$inertia.delete(
+          this.route("employment-statuses.destroy", this.employmentStatus.id)
+        );
       }
     },
   },

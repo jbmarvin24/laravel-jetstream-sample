@@ -29,6 +29,12 @@
                 >
                   Employees
                 </jet-nav-link>
+                <jet-nav-link
+                  :href="route('employment-statuses')"
+                  :active="route().current('employment-statuses')"
+                >
+                  Employment Statuses
+                </jet-nav-link>
               </div>
             </div>
 
@@ -255,6 +261,12 @@
               :active="route().current('employees')"
             >
               Employees
+            </jet-responsive-nav-link>
+            <jet-responsive-nav-link
+              :href="route('employment-statuses')"
+              :active="route().current('employment-statuses')"
+            >
+              Employment Statuses
             </jet-responsive-nav-link>
           </div>
 
