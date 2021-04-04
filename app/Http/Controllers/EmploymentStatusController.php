@@ -41,7 +41,7 @@ class EmploymentStatusController extends Controller
     {
         $validated = $request->validate([
             'name' => ['required', 'max:100'],
-            'description' => ['string'],
+            'description' => [],
         ]);
 
         EmploymentStatus::create($validated);
@@ -88,7 +88,7 @@ class EmploymentStatusController extends Controller
     {
         $validated = $request->validate([
             'name' => ['required', 'max:100'],
-            'description' => ['string'],
+            'description' => [],
         ]);
 
         $employmentStatus->update($validated);

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class EmploymentStatusSeeder extends Seeder
 {
@@ -13,6 +14,15 @@ class EmploymentStatusSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('employment_statuses')->insert([
+        [
+            'name' => 'Provationary'
+        ],
+        [
+            'name' => 'Regular'
+        ],
+        [
+            'name' => 'Resigned'
+        ]]);
     }
 }

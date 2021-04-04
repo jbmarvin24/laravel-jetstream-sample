@@ -12,7 +12,7 @@
           :href="route('employment-statuses.create')"
         >
           <span class="mr-1">Create</span>
-          <span class="hidden md:inline">Employment Statuses</span>
+          <span class="hidden md:inline">Employment Status</span>
         </inertia-link>
       </div>
       <div class="bg-white rounded-md shadow overflow-x-auto">

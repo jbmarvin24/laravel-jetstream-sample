@@ -68,6 +68,26 @@
                   </div>
                   <div>{{ form.errors.age }}</div>
                 </div>
+
+                <div class="col-span-6 sm:col-span-3">
+                  <label
+                    for="employment_status"
+                    class="block text-sm font-medium text-gray-700"
+                    >Employment Status</label
+                  >
+                  <div class="mt-1 flex rounded-md shadow-sm">
+                    <select
+                      id="employment_status"
+                      name="employment_status"
+                      autocomplete="employment_status"
+                      class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 flex-1 block w-full rounded-md shadow-sm"
+                    >
+                      <option>United States</option>
+                      <option>Canada</option>
+                      <option>Mexico</option>
+                    </select>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
