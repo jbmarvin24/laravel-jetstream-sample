@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Employee;
+use App\Models\EmploymentStatus;
 
 class EmployeeController extends Controller
 {
@@ -15,8 +16,9 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employees = Employee::all();
-        return Inertia::render('Employees/Index',[
+        $employees = Employee::select('id', 'name', 'birthday', 'age', 'employment_status_id')->with('employmentStatus:id,name')->get();
+
+        return Inertia::render('Employees/Index', [
             'employees' => $employees
         ]);
     }
@@ -28,7 +30,10 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Employees/Create');
+        $employmentStatuses = EmploymentStatus::select(['id', 'name'])->get();
+        return Inertia::render('Employees/Create', [
+            'employmentStatuses' => $employmentStatuses
+        ]);
     }
 
     /**
@@ -40,9 +45,10 @@ class EmployeeController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => ['required','max:100'],
-            'birthday' => ['required','date'],
-            'age' => ['required','numeric']
+            'name' => ['required', 'max:100'],
+            'birthday' => ['required', 'date'],
+            'age' => ['required', 'numeric'],
+            'employment_status_id' => ['required']
         ]);
         Employee::create($validated);
 
@@ -68,13 +74,17 @@ class EmployeeController extends Controller
      */
     public function edit(Employee $employee)
     {
-        return Inertia::render('Employees/Edit',[
+        $employmentStatuses = EmploymentStatus::all();
+
+        return Inertia::render('Employees/Edit', [
             'employee' => [
                 'id' => $employee->id,
-                'name' =>$employee->name,
+                'name' => $employee->name,
                 'birthday' => $employee->birthday,
-                'age' => $employee->age
-            ]
+                'age' => $employee->age,
+                'employment_status_id' => $employee->employment_status_id
+            ],
+            'employmentStatuses' => $employmentStatuses
         ]);
     }
 
@@ -88,9 +98,10 @@ class EmployeeController extends Controller
     public function update(Employee $employee)
     {
         $validated = request()->validate([
-            'name' => ['required','max:100'],
-            'birthday' => ['required','date'],
-            'age' => ['required','numeric']
+            'name' => ['required', 'max:100'],
+            'birthday' => ['required', 'date'],
+            'age' => ['required', 'numeric'],
+            'employment_status_id' => ['required']
         ]);
 
         $employee->update($validated);

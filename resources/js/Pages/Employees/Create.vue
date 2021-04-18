@@ -77,16 +77,23 @@
                   >
                   <div class="mt-1 flex rounded-md shadow-sm">
                     <select
-                      id="employment_status"
-                      name="employment_status"
-                      autocomplete="employment_status"
+                      id="employment_status_id"
+                      name="employment_status_id"
+                      autocomplete="employment_status_id"
                       class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 flex-1 block w-full rounded-md shadow-sm"
+                      v-model="form.employment_status_id"
                     >
-                      <option>United States</option>
-                      <option>Canada</option>
-                      <option>Mexico</option>
+                      <option :value="null" />
+                      <option
+                        v-for="status in employmentStatuses"
+                        :value="status.id"
+                        :key="status.id"
+                      >
+                        {{ status.name }}
+                      </option>
                     </select>
                   </div>
+                  <div>{{ form.errors.employment_status_id }}</div>
                 </div>
               </div>
             </div>
@@ -118,12 +125,16 @@ export default {
     JetLabel,
     JetInputError,
   },
+  props: {
+    employmentStatuses: Array,
+  },
   data() {
     return {
       form: this.$inertia.form({
         name: null,
         birthday: null,
         age: null,
+        employment_status_id: null,
       }),
     };
   },

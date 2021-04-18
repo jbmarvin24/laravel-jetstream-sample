@@ -19,6 +19,7 @@
             <th class="px-6 pt-6 pb-4">Name</th>
             <th class="px-6 pt-6 pb-4">Birthday</th>
             <th class="px-6 pt-6 pb-4">Age</th>
+            <th class="px-6 pt-6 pb-4">Employment Status</th>
           </tr>
           <tr
             v-for="employee in employees"
@@ -55,6 +56,14 @@
                 class="px-6 py-4 flex items-center"
               >
                 {{ employee.age }}
+              </inertia-link>
+            </td>
+            <td class="border-t">
+              <inertia-link
+                :href="route('employees.edit', employee.id)"
+                class="px-6 py-4 flex items-center"
+              >
+                {{ employee.employment_status.name }}
               </inertia-link>
             </td>
             <td class="border-t w-px">

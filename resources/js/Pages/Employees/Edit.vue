@@ -68,6 +68,33 @@
                   </div>
                   <div>{{ form.errors.age }}</div>
                 </div>
+
+                <div class="col-span-6 sm:col-span-3">
+                  <label
+                    for="employment_status"
+                    class="block text-sm font-medium text-gray-700"
+                    >Employment Status</label
+                  >
+                  <div class="mt-1 flex rounded-md shadow-sm">
+                    <select
+                      id="employment_status_id"
+                      name="employment_status_id"
+                      autocomplete="employment_status_id"
+                      class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 flex-1 block w-full rounded-md shadow-sm"
+                      v-model="form.employment_status_id"
+                    >
+                      <option :value="null" />
+                      <option
+                        v-for="status in employmentStatuses"
+                        :value="status.id"
+                        :key="status.id"
+                      >
+                        {{ status.name }}
+                      </option>
+                    </select>
+                  </div>
+                  <div>{{ form.errors.employment_status_id }}</div>
+                </div>
               </div>
             </div>
             <div
@@ -109,6 +136,7 @@ export default {
   },
   props: {
     employee: Object,
+    employmentStatuses: Array,
   },
   data() {
     return {
@@ -116,6 +144,7 @@ export default {
         name: this.employee.name,
         birthday: this.employee.birthday,
         age: this.employee.age,
+        employment_status_id: this.employee.employment_status_id,
       }),
     };
   },
