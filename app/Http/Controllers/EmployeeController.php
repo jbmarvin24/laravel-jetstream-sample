@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request;
 use Inertia\Inertia;
 use App\Models\Employee;
 use App\Models\EmploymentStatus;
@@ -42,9 +42,9 @@ class EmployeeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        $validated = $request->validate([
+        $validated = request()->validate([
             'name' => ['required', 'max:100'],
             'birthday' => ['required', 'date'],
             'age' => ['required', 'numeric'],
