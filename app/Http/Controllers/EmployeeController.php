@@ -16,10 +16,21 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employees = Employee::select('id', 'name', 'birthday', 'age', 'employment_status_id')->with('employmentStatus:id,name')->get();
+        //$employees = Employee::select('id', 'name', 'birthday', 'age', 'employment_status_id')->with('employmentStatus:id,name')->get();
+
 
         return Inertia::render('Employees/Index', [
-            'employees' => $employees
+            'employees' => Employee::select('id', 'name', 'birthday', 'age', 'employment_status_id')->with('employmentStatus:id,name')
+            ->paginate()
+            ->withQueryString()
+            ->through(function ($employee) {
+                return [
+                    'id' => $employee->id,
+                    'name' => $employee->name,
+                    'age' => $employee->age,
+                    'employmentStatus' => $employee->employmentStatus->only('name')
+                ];
+            })
         ]);
     }
 

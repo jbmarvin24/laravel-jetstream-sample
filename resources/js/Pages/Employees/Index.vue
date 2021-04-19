@@ -22,7 +22,7 @@
             <th class="px-6 pt-6 pb-4">Employment Status</th>
           </tr>
           <tr
-            v-for="employee in employees"
+            v-for="employee in employees.data"
             :key="employee.id"
             class="hover:bg-gray-100 focus-within:bg-gray-100"
           >
@@ -63,7 +63,7 @@
                 :href="route('employees.edit', employee.id)"
                 class="px-6 py-4 flex items-center"
               >
-                {{ employee.employment_status.name }}
+                {{ employee.employmentStatus }}
               </inertia-link>
             </td>
             <td class="border-t w-px">
