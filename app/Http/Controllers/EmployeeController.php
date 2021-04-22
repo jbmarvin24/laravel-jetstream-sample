@@ -21,16 +21,17 @@ class EmployeeController extends Controller
 
         return Inertia::render('Employees/Index', [
             'employees' => Employee::select('id', 'name', 'birthday', 'age', 'employment_status_id')->with('employmentStatus:id,name')
-            ->paginate()
-            ->withQueryString()
-            ->through(function ($employee) {
-                return [
-                    'id' => $employee->id,
-                    'name' => $employee->name,
-                    'age' => $employee->age,
-                    'employmentStatus' => $employee->employmentStatus->only('name')
-                ];
-            })
+                ->paginate(10)
+                ->withQueryString()
+                ->through(function ($employee) {
+                    return [
+                        'id' => $employee->id,
+                        'name' => $employee->name,
+                        'age' => $employee->age,
+                        'birthday' => $employee->birthday,
+                        'employmentStatus' => $employee->employmentStatus->only('name')
+                    ];
+                })
         ]);
     }
 

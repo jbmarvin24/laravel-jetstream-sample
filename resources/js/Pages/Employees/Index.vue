@@ -5,12 +5,13 @@
         Employees
       </h2>
     </template>
-    <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-      <div class="mb-6 flex justify-between items-center">
+    <div class="max-w-7xl mx-auto py-4 sm:px-6 lg:px-8">
+      <div class="mb-3 flex justify-between items-center">
         <inertia-link class="btn-indigo" :href="route('employees.create')">
           <span class="mr-1">Create</span>
           <span class="hidden md:inline">Employee</span>
         </inertia-link>
+        <button v-on:click="printPage">Print</button>
       </div>
       <div class="bg-white rounded-md shadow overflow-x-auto">
         <table class="w-full whitespace-nowrap">
@@ -63,7 +64,7 @@
                 :href="route('employees.edit', employee.id)"
                 class="px-6 py-4 flex items-center"
               >
-                {{ employee.employmentStatus }}
+                {{ employee.employmentStatus.name }}
               </inertia-link>
             </td>
             <td class="border-t w-px">
@@ -85,19 +86,27 @@
           </tr>
         </table>
       </div>
+      <pagination class="mt-6" :links="employees.links" />
     </div>
   </app-layout>
 </template>
 
 <script>
 import AppLayout from "@/Layouts/AppLayout";
+import Pagination from "@/Shared/Pagination";
 
 export default {
   components: {
     AppLayout,
+    Pagination,
   },
   props: {
-    employees: Array,
+    employees: Object,
+  },
+  methods: {
+    printPage() {
+      window.print();
+    },
   },
 };
 </script>
